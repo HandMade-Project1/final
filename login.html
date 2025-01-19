@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="login-form">
+      <h2>Login</h2>
+      <form id="input">
+        <div class="input-group">
+          <label for="username">
+            <i class="fas fa-user"></i>
+            <input type="text" id="email" placeholder="email address">
+          </label>
+        </div>
+        <div class="input-group">
+          <label for="password">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" placeholder=" password" href="index.html">
+          </label>
+        </div>
+
+        <button type="submit" class="login-btn">LOGIN</button>
+
+        <div class="signup-link">
+          <p>Or Sign Up Using</p>
+          <a href="register.html">SIGN UP</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+    import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyAC2zpAE0YqT_zQG1zwYjmjgBiKjDfvlA8",
+      authDomain: "crafted-heart.firebaseapp.com",
+      projectId: "crafted-heart",
+      storageBucket: "crafted-heart.firebasestorage.app",
+      messagingSenderId: "356981294414",
+      appId: "1:356981294414:web:ea3a6c8e9dd59df7728a1f",
+      measurementId: "G-PQ9WCXTS0L"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const button = document.getElementById('input');
+    button.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            console.log("Login successful:", user);
+            alert("Login successful!");
+        } catch (error) {
+    if (error.code === 'auth/user-not-found') {
+        alert("User not found. Please sign up first.");
+    } else if (error.code === 'auth/wrong-password') {
+        alert("Incorrect password. Please try again.");
+    } else {
+       ("Error: " + error.message);
+    }
+        }
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        console.log("Login successful:", user);
+        window.location.href = './index.html'
+      } catch (error) {
+        console.error("Error during login:", error);
+        alert(`Login failed: ${error.message}`);
+      }
+
+
+    });
+
+
+
+  </script>
+</body>
+
+</html>

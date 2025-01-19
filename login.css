@@ -1,0 +1,191 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+body {
+  margin: 0;
+  font-family: 'Poppins';
+  background-color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  background: #C4C1E4;
+  border-radius: 10px;
+  box-shadow: 0 0 40px 3px #ac7ac9;
+  animation: bombing 4s 2s ease-in-out infinite;  padding: 20px;
+}
+
+@keyframes bombing {
+    0% {
+      box-shadow: 0 0 40px 3px #8450a2;
+    }
+    50% {
+      box-shadow: 0 0 5px 1px #8450a2;
+    }
+    100% {
+      box-shadow: 0 0 40px 3px #8450a2;
+    }
+  }
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-family: 'Poppins';
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+  font-family: 'Poppins';
+
+}
+
+.input-group label {
+  display: flex;
+  align-items: center;
+  font-family: 'Poppins';
+
+}
+
+.input-group i {
+  margin-right: 10px;
+  color: #555;
+
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+    font-family: 'Poppins';
+
+}
+
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #9838b2, #e3b8f7);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #7c2794, #694479);
+}
+
+.social-login {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.social-login p {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: white;
+  background: #9838b2;
+  padding: 10px;
+  border-radius: 50%;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icons a:hover {
+  background: #be70e2;
+}
+
+.signup-link {
+  text-align: center;
+}
+
+.signup-link a {
+  text-decoration: none;
+  color: #7c2794;
+  font-weight: bold;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+      max-width: 90%;
+      padding: 15px;
+    }
+  
+    .login-form h2 {
+      font-size: 20px;
+    }
+  
+    .input-group input {
+      font-size: 14px;
+    }
+  
+    .login-btn {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .social-icons a {
+      width: 35px;
+      height: 35px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      max-width: 95%;
+      padding: 10px;
+    }
+  
+    .login-form h2 {
+      font-size: 18px;
+    }
+  
+    .input-group input {
+      font-size: 12px;
+    }
+  
+    .login-btn {
+      font-size: 12px;
+      padding: 6px;
+    }
+  
+    .social-icons a {
+      width: 30px;
+      height: 30px;
+      font-size: 12px;
+    }
+  }

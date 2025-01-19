@@ -1,0 +1,251 @@
+<html lang="en">
+
+<head>
+    <script src="../assets/js/color-modes.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Crafted Heart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="details.css">
+
+</head>
+
+<body>
+
+
+    <header>
+        <div class="top_header">
+            <div class="container">
+                <a href="#" class="logo"> <img src="../crf.png" alt=""></a>
+                <form action="product.html" class="search_box" id="searchForm">
+                    <div class="select_box">
+                        <select id="category" name="category">
+                            <option value="All Categories">All Categories</option>
+                            <option value="Candles">Candles Gift</option>
+                            <option value="Home Decor">Home Decor Gift</option>
+                            <option value="Wool">Wool Gift</option>
+                            <option value="Embroidery">Embroidery Gift</option>
+                        </select>
+                    </div>
+                    <input type="text" name="search" id="search" placeholder="Search for Categories" required>
+                    <button type="submit" id="search button">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+                <div id="searchResults"></div>
+                <div class="header_icons">
+                    <div class="icon">
+                        <a href="#">
+                            <i class="fa-regular fa-heart" style="color: #C4C1E4;"></i>
+                        </a>
+                    </div>
+                    <div onclick="open_close_cart()" class="icon">
+                        <a href="#">
+                            <i class="fa-solid fa-cart-shopping" style="color: #C4C1E4;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom_header">
+            <div class="container">
+                <nav class="nav">
+                    <ul class="nav_links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li class="active"><a href="../products/index.html">Gifts</a></li>
+                        <li><a href="../about.html">About us</a></li>
+                        <li><a href="../contact.html">Contact us</a></li>
+                    </ul>
+                </nav>
+                <div class="login_signup btns">
+                    <a href="login.html" class="btn" id="login-button">Login <i
+                            class="fa-solid fa-right-to-bracket"></i></a>
+                    <a href="register.html" class="btn" id="signup-button">Sign UP <i
+                            class="fa-solid fa-user-plus"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+    <br>
+    <br>
+    <h1 class="title">Product Details</h1><br>
+    <div id="product-details-container" class="product-details"></div>
+
+    <!-- Main Parent Container -->
+    <div class="container">
+        <!-- Product Details Section -->
+        <div id="product-details-container" class="product-details"></div>
+
+        <!-- Form Section -->
+        <div class="form-container">
+            <h1>Please share your experience</h1><br>
+
+            <!-- Review Form -->
+            <form id="review-form" class="review-form">
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <div id="star-rating" class="card">
+                        <span onclick="updateRating(1)" class="star">★</span>
+                        <span onclick="updateRating(2)" class="star">★</span>
+                        <span onclick="updateRating(3)" class="star">★</span>
+                        <span onclick="updateRating(4)" class="star">★</span>
+                        <span onclick="updateRating(5)" class="star">★</span>
+                    </div>
+                    <input type="hidden" id="rating" name="rating" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="review">Your Review:</label>
+                    <textarea id="review" name="review" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn rr">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="reviews" id="reviews"></div>
+
+
+
+
+
+
+
+
+    <footer class="text-center text-lg-start ">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span style="padding-left: 40px;">Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+
+            <!-- Right -->
+            <div>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Crafted Heart
+                        </h6>
+                        <p>
+                            dedicated platform offering a wide variety of handmade products crafted with care and
+                            passion.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Products
+                        </h6>
+                        <p>
+                            <a href="product.html" class="text-reset">Candles Gift</a>
+                        </p>
+                        <p>
+                            <a href="product.html" class="text-reset">Home Decor Gift</a>
+                        </p>
+                        <p>
+                            <a href="product.html" class="text-reset">Wool Gift</a>
+                        </p>
+                        <p>
+                            <a href="product.html" class="text-reset">Embroidery Gift</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Useful links
+                        </h6>
+                        <p>
+                            <a href="product.html" class="text-reset">Gifts</a>
+                        </p>
+                        <p>
+                            <a href="contact.html" class="text-reset">Contact us</a>
+                        </p>
+                        <p>
+                            <a href="about.html" class="text-reset">About us</a>
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p><i class="fas fa-home me-3"></i> Jordan, Zarqa</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            craftedheart@gmail.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i>0775325987</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+    </footer>
+
+
+
+
+    <script src="product-details.js" type="module"></script>
+</body>
+
+</html>
