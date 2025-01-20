@@ -1,0 +1,186 @@
+/* General Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Header Styling */
+.top_header {
+    background-color: white;
+    border-bottom: 2px solid #C4C1E4;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 90px;
+    width: 100px;
+}
+
+
+.search_box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search_box .select_box select,
+.search_box input {
+    padding: 10px;
+    border: 1px solid #C4C1E4;
+    border-radius: 5px;
+    outline: none;
+}
+
+.search_box button {
+    padding: 10px 15px;
+    background-color: #C4C1E4;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.search_box button:hover {
+    background-color: #a19cd3;
+}
+
+.header_icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header_icons .icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.header_icons .icon .count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #C4C1E4;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+
+.bottom_header {
+    background-color: #C4C1E4;
+    padding: 10px 0;
+}
+
+.nav_links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav_links li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav_links li a:hover,
+.nav_links .active a {
+    background-color: white;
+    color: #C4C1E4;
+}
+
+.login_signup .btn {
+    text-decoration: none;
+    color: white;
+    background-color: #333;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.login_signup .btn:hover {
+    background-color: #555;
+}
+
+
+/* Profile Page Styling */
+.container1 {
+    margin: 50px auto;
+    max-width: 800px;
+    background-color: #C4C1E4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.container1 .row {
+    display: flex;
+    gap: 20px;
+}
+
+.col-md-3,
+.col-md-5 {
+    flex: 1;
+}
+
+.text-center img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.labels {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.profile-button {
+    background-color: #C4C1E4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.profile-button:hover {
+    background-color: #a39ed8;
+}
+
+
+/* Footer Styling */
+footer {
+    background-color: #C4C1E4 !important;
+    color: white !important;
+    font-family: 'Poppins', sans-serif !important;
+  }
+  .text-reset {
+    text-decoration: none !important; 
+  }
+  .col-md-2 a:hover, .col-md-3 a:hover {
+    background-color: #a19cd3;
+  }

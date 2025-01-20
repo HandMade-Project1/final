@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Page</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="register.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="login-form">
+        <h2>Sign Up</h2>
+        <form id="input">
+          <div class="input-group">
+            <label for="firstname">
+              <i class="fas fa-user"></i>
+              <input type="text" id="firstname" placeholder="first name" />
+            </label>
+          </div>
+          <div class="input-group">
+            <label for="lastname">
+              <i class="fas fa-user"></i>
+              <input type="text" id="lastname" placeholder="lastname" />
+            </label>
+            <label for="email">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="email" placeholder="email address" />
+            </label>
+            <label for="password">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="password" placeholder=" password" />
+            </label>
+            <label for="age">
+              <i class="fas fa-calendar-alt"></i>
+              <input type="number" id="age" placeholder=" age" />
+            </label>
+            <label for="preferred gift categories">
+              <i class="fas fa-gift"></i>
+              <input
+                type="text"
+                id="gift"
+                placeholder="Enter your preferred gift categories"
+              />
+            </label>
+          </div>
+
+          <button type="submit" class="login-btn">signup</button>
+          <p>Or Sign Up Using</p>
+          <div class="social-icons">
+            <a href="#" id="google-signin"><i class="fab fa-google"></i></a>
+          </div>
+          <div class="signup-link">
+            <a href="login.html">LOGIN</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithPopup,
+        GoogleAuthProvider,
+      } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        setDoc,
+        doc,
+      } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAC2zpAE0YqT_zQG1zwYjmjgBiKjDfvlA8",
+        authDomain: "crafted-heart.firebaseapp.com",
+        projectId: "crafted-heart",
+        storageBucket: "crafted-heart.firebasestorage.app",
+        messagingSenderId: "356981294414",
+        appId: "1:356981294414:web:ea3a6c8e9dd59df7728a1f",
+        measurementId: "G-PQ9WCXTS0L",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      const button = document.getElementById("input");
+      button.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        let firstName = document.getElementById("firstname").value;
+        let lastName = document.getElementById("lastname").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let age = document.getElementById("age").value;
+        let gift = document.getElementById("gift").value;
+
+        try {
+          const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+          const user = userCredential.user;
+          await setDoc(doc(db, "users", user.uid), {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            age: age,
+            gift: gift,
+          });
+          window.location.href = "./index.html";
+          alert("user added successfully!");
+        } catch (error) {
+          console.error("Error:", error.code, error.message);
+          alert("Error: " + error.message);
+        }
+      });
+
+      // async function addUsers(firstName, lastName, email, password, age, gift) {
+      //   try {
+      //     const docRef = await addDoc(collection(db, "users"), {
+      //       firstName: firstName,
+      //       lastName: lastName,
+      //       email: email,
+      //       password: password,
+      //       age: age,
+      //       gift: gift,
+      //     });
+      //     console.log(docRef.id);
+
+      //     alert("user added successfully!");
+      //   } catch (e) {
+      //     console.error("Error adding product: ", e);
+      //     alert("Error adding product: " + e.message);
+      //   }
+      // }
+
+      // Google Authentication
+      const googleButton = document.getElementById("google-signin");
+      googleButton.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        const provider = new GoogleAuthProvider();
+        try {
+          const result = await signInWithPopup(auth, provider);
+          const user = result.user;
+          console.log("Google sign in successful:", user);
+          alert("Google sign in successful!");
+          window.location.href = "./index.html";
+        } catch (error) {
+          console.error("Google Sign-In Error:", error.code, error.message);
+          alert("Error: " + error.message);
+        }
+      });
+    </script>
+  </body>
+</html>
