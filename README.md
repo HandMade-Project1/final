@@ -37,9 +37,9 @@ Features ✨
 ✨ Tools we used
 
 # Platform Development (Website)
-# Front-End Technologies:
+ Front-End Technologies:
 HTML, CSS, JavaScript: For building and designing the website interface.
-# Database:
+ Database:
 FireStore: For managing customer data, product inventory, and orders.
 
 ----------------------------------------------------------------------
