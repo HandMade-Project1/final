@@ -35,8 +35,16 @@ async function displayProducts() {
         </div>
         <div class="product-card-content">
         <h2 class="product-card-title">${product.name}</h2>
+                <!-- Rating Section -->
+   <div class="product-card-rating" style="margin-top: 10px; display: flex; gap: 5px;">
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star" style="font-size: 20px; color: #ddd;">★</span>
+          <span class="star" style="font-size: 20px; color: #ddd;">★</span>
+        </div>
         <div class="price-and-details">
-        <span class="product-card-price">$${product.price}</span>
+        <span class="product-card-price">JD ${product.price}</span>
         <a href="../details/product-details.html?id=${doc.id}" class="product-card-button">View Details</a>
         <div>
         </div>
@@ -61,8 +69,16 @@ async function displayProducts() {
         </div>
         <div class="product-card-content">
         <h2 class="product-card-title">${product.name}</h2>
+                <!-- Rating Section -->
+   <div class="product-card-rating" style="margin-top: 10px; display: flex; gap: 5px;">
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star" style="font-size: 20px; color: #ddd;">★</span>
+          <span class="star" style="font-size: 20px; color: #ddd;">★</span>
+        </div>
         <div class="price-and-details">
-        <span class="product-card-price">$${product.price}</span>
+        <span class="product-card-price">JD ${product.price}</span>
         <a href="../details/product-details.html?id=${doc.id}" class="product-card-button">View Details</a>
         <div>
         </div>
@@ -87,8 +103,16 @@ async function displayProducts() {
         </div>
         <div class="product-card-content">
         <h2 class="product-card-title">${product.name}</h2>
+                <!-- Rating Section -->
+   <div class="product-card-rating" style="margin-top: 10px; display: flex; gap: 5px;">
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star" style="font-size: 20px; color: #ddd;">★</span>
+          <span class="star" style="font-size: 20px; color: #ddd;">★</span>
+        </div>
         <div class="price-and-details">
-        <span class="product-card-price">$${product.price}</span>
+        <span class="product-card-price">JD ${product.price}</span>
         <a href="../details/product-details.html?id=${doc.id}" class="product-card-button">View Details</a>
         <div>
         </div>
@@ -113,8 +137,16 @@ async function displayProducts() {
         </div>
         <div class="product-card-content">
         <h2 class="product-card-title">${product.name}</h2>
+            <!-- Rating Section -->
+   <div class="product-card-rating" style="margin-top: 10px; display: flex; gap: 5px;">
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star filled" style="font-size: 20px; color: #ffc107;">★</span>
+          <span class="star" style="font-size: 20px; color: #ddd;">★</span>
+          <span class="star" style="font-size: 20px; color: #ddd;">★</span>
+        </div>
         <div class="price-and-details">
-        <span class="product-card-price">$${product.price}</span>
+        <span class="product-card-price">JD ${product.price}</span>
         <a href="../details/product-details.html?id=${doc.id}" class="product-card-button">View Details</a>
         <div>
         </div>
