@@ -1,6 +1,7 @@
 # Crafted-Heart
 
 Crafted Heart 🌟
+
 Crafted Heart is a unique platform dedicated to showcasing handmade, artistic creations that bring beauty, warmth, and love into people's lives. From candles and embroidery to home decor and personalized gifts, our mission is to celebrate craftsmanship and provide a seamless shopping experience for customers who value originality and quality.
 
 ---
