@@ -15,6 +15,7 @@ Features ✨
 
 🎁 Personalized Gifts: Custom-made products tailored to your preferences.
 
+--------------------------------------------------------------------------------
 
 ✨ Team Structure
 
