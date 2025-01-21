@@ -2,7 +2,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebas
 import {
   doc,
   getDoc,
-  getFirestore, collection,   addDoc,  getDocs, query,   orderBy,   serverTimestamp 
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
 import { where } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
 
@@ -80,6 +86,25 @@ async function fetchProductDetails() {
 }
 
 
+// Select the button and form container
+const writeReviewBtn = document.getElementById("write-review-btn");
+const reviewFormContainer = document.getElementById("review-form-container");
+const closeFormBtn = document.getElementById("close-form-btn");
+
+// Toggle form visibility when the "Write a review" button is clicked
+writeReviewBtn.addEventListener("click", () => {
+  reviewFormContainer.style.display = "block"; // Show form
+  writeReviewBtn.style.display = "none"; // Hide "Write a review" button
+});
+
+// Close form when the "X" button is clicked
+closeFormBtn.addEventListener("click", () => {
+  reviewFormContainer.style.display = "none"; // Hide form
+  writeReviewBtn.style.display = "block"; // Show "Write a review" button again
+});
+
+
+
 
 const reviewsCollection = collection(db, "reviews");
 
@@ -89,80 +114,83 @@ const stars = document.getElementsByClassName("star");
 const ratingInput = document.getElementById("rating");
 
 const updateRating = (rating) => {
-    ratingInput.value = rating;
+  ratingInput.value = rating;
 
-    Array.from(stars).forEach((star, index) => {
-        star.className = "star";
-        if (index < rating) {
-            star.classList.add(["one", "two", "three", "four", "five"][rating - 1]);
-        }
-    });
+  Array.from(stars).forEach((star, index) => {
+    star.className = "star";
+    if (index < rating) {
+      star.classList.add(["one", "two", "three", "four", "five"][rating - 1]);
+    }
+  });
 };
 
 form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const name = form.name.value.trim();
-    const rating = parseInt(ratingInput.value);
-    const review = form.review.value.trim();
+  const name = form.name.value.trim();
+  const rating = parseInt(ratingInput.value);
+  const review = form.review.value.trim();
 
-    if (!name || !rating || !review) {
-        alert("Please fill out all fields and select a rating.");
-        return;
-    }
+  if (!name || !rating || !review) {
+    alert("Please fill out all fields and select a rating.");
+    return;
+  }
 
-    try {
-        await addDoc(reviewsCollection, {
-            name,
-            rating,
-            review,
-            productId,
-            timestamp: serverTimestamp()
-        });
-        form.reset();
-        Array.from(stars).forEach(star => star.className = "star");
-        loadReviews();
-    } catch (error) {
-        console.error("Error adding review:", error);
-    }
+  try {
+    await addDoc(reviewsCollection, {
+      name,
+      rating,
+      review,
+      productId,
+      timestamp: serverTimestamp(),
+    });
+    form.reset();
+    Array.from(stars).forEach((star) => (star.className = "star"));
+    loadReviews();
+  } catch (error) {
+    console.error("Error adding review:", error);
+  }
 });
 
 const loadReviews = async () => {
-  reviewsDiv.innerHTML = "";  
+  reviewsDiv.innerHTML = "";
 
   try {
-      const q = query(
-          reviewsCollection, 
-          where("productId", "==", productId),
-          orderBy("timestamp", "desc")
-      );
+    const q = query(
+      reviewsCollection,
+      where("productId", "==", productId),
+      orderBy("timestamp", "desc")
+    );
 
-      const querySnapshot = await getDocs(q); 
+    const querySnapshot = await getDocs(q);
 
-      querySnapshot.forEach((doc) => {
-          const { name, rating, review, timestamp } = doc.data();
-          console.log(name,rating,review,timestamp);
-          const reviewElement = document.createElement("div");
-          reviewElement.classList.add("review");
-          reviewElement.innerHTML = `
-          <small>${name}</small>
-              <h3>${rating}/5</h3> 
-              <h3>${review}</h3>
-              <small>${new Date(timestamp?.toDate()).toLocaleString()}</small>
-          `;
-          reviewsDiv.appendChild(reviewElement);
-      });
+    querySnapshot.forEach((doc) => {
+      const { name, rating, review, timestamp } = doc.data();
+      console.log(name, rating, review, timestamp);
+      const reviewElement = document.createElement("div");
+      reviewElement.classList.add("review");
+      reviewElement.innerHTML = `
+    <div class="header">
+        <small class="name">${name}</small><small class="date">${new Date(
+        timestamp?.toDate()
+      ).toLocaleString()}</small>
+    </div>
+    <br>
+    <div class="rate"> <h6>reted-${rating}/5</h6> </div>
+    <p>${review}</p>
+`;
+
+      reviewsDiv.appendChild(reviewElement);
+    });
   } catch (error) {
-      console.error("Error loading reviews:", error);
+    console.error("Error loading reviews:", error);
   }
 };
 
-
 Array.from(stars).forEach((star, index) => {
-    star.addEventListener("click", () => updateRating(index + 1));
+  star.addEventListener("click", () => updateRating(index + 1));
 });
 
 loadReviews();
-
 
 fetchProductDetails();
