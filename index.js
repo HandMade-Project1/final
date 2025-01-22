@@ -75,26 +75,40 @@ auth.onAuthStateChanged((user) => {
   const welcomeMessageElement = document.getElementById("welcome-message");
   const loginButton = document.getElementById("login-button");
   const signupButton = document.getElementById("signup-button");
+  const logoutButton = document.getElementById("logout-button");
 
   if (user) {
-    // console.log("hellllooooo")
     console.log("User ID:", user.uid);
     fetchAndDisplayUserName(user.uid);
 
     loginButton.style.display = "none";
     signupButton.style.display = "none";
+    logoutButton.style.display = "block"; // Show the logout button
   } else {
     console.log("No user signed in.");
 
     loginButton.style.display = "block";
     signupButton.style.display = "block";
+    logoutButton.style.display = "none"; // Hide the logout button
 
     welcomeMessageElement.textContent = "";
   }
 });
-// // Function to fetch and display the user's name dynamically
+
+// Function to fetch and display the user's name
 async function fetchAndDisplayUserName(uid) {
   try {
+    // Check if the user is signed in via Google
+    const currentUser = auth.currentUser;
+    if (currentUser && currentUser.displayName) {
+      // Display the name from Google account
+      document.getElementById(
+        "welcome-message"
+      ).innerHTML = `Welcome <span id="user-name">${currentUser.displayName}</span>!`;
+      return;
+    }
+
+    // If no displayName, check Firestore
     const userDocRef = doc(db, "users", uid);
     const userDoc = await getDoc(userDocRef);
 
@@ -110,3 +124,16 @@ async function fetchAndDisplayUserName(uid) {
     console.error("Error fetching user data:", error);
   }
 }
+
+// Add an event listener to the logout button to handle sign out
+document.getElementById("logout-button").addEventListener("click", async () => {
+  try {
+    await auth.signOut();
+    console.log("User signed out.");
+    // Redirect to the login page or update the UI accordingly
+    window.location.href = "login.html";
+  } catch (error) {
+    console.error("Error signing out:", error);
+  }
+});
+

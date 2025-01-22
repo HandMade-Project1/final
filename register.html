@@ -19,7 +19,7 @@
           <div class="input-group">
             <label for="firstname">
               <i class="fas fa-user"></i>
-              <input type="text" id="firstname" placeholder="first name" />
+              <input type="text" id="firstname" placeholder="first name" required />
             </label>
           </div>
           <div class="input-group">
@@ -29,11 +29,11 @@
             </label>
             <label for="email">
               <i class="fas fa-envelope"></i>
-              <input type="email" id="email" placeholder="email address" />
+              <input type="email" id="email" placeholder="email address" required />
             </label>
             <label for="password">
               <i class="fas fa-lock"></i>
-              <input type="password" id="password" placeholder=" password" />
+              <input type="password" id="password" placeholder=" password" required />
             </label>
             <label for="age">
               <i class="fas fa-calendar-alt"></i>
@@ -127,26 +127,10 @@
         }
       });
 
-      // async function addUsers(firstName, lastName, email, password, age, gift) {
-      //   try {
-      //     const docRef = await addDoc(collection(db, "users"), {
-      //       firstName: firstName,
-      //       lastName: lastName,
-      //       email: email,
-      //       password: password,
-      //       age: age,
-      //       gift: gift,
-      //     });
-      //     console.log(docRef.id);
 
-      //     alert("user added successfully!");
-      //   } catch (e) {
-      //     console.error("Error adding product: ", e);
-      //     alert("Error adding product: " + e.message);
-      //   }
-      // }
 
-      // Google Authentication
+
+/////////////////////////// Google Authentication ///////////////////////////////////////////
       const googleButton = document.getElementById("google-signin");
       googleButton.addEventListener("click", async (e) => {
         e.preventDefault();
@@ -163,6 +147,66 @@
           alert("Error: " + error.message);
         }
       });
+
+
+
+
+//////////////////////// Validation rules for form /////////////////////////////////////////////////////////
+
+      document.querySelector("form").addEventListener("submit", (event) => {
+  let isValid = true;
+
+  // Select form fields
+  const firstName = document.getElementById("firstname").value.trim();
+  const lastName = document.getElementById("lastname").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const age = document.getElementById("age").value.trim();
+  const gift = document.getElementById("gift").value.trim();
+
+  // Regex rules
+  const nameRegex = /^[A-Za-z]{2,30}$/; // 2-30 alphabetic characters
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Valid email format
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // At least 8 characters, 1 letter, 1 number
+  const ageRegex = /^[1-9][0-9]?$/; // Valid age (1-99)
+  const giftRegex = /^[A-Za-z\s,]{2,50}$/; // 2-50 characters, alphabetic, spaces, or commas
+
+  // Validate each field
+  if (!nameRegex.test(firstName)) {
+    alert("First name must be 2-30 alphabetic characters.");
+    isValid = false;
+  }
+
+  if (!nameRegex.test(lastName)) {
+    alert("Last name must be 2-30 alphabetic characters.");
+    isValid = false;
+  }
+
+  if (!emailRegex.test(email)) {
+    alert("Please enter a valid email address.");
+    isValid = false;
+  }
+
+  if (!passwordRegex.test(password)) {
+    alert("Password must be at least 8 characters long and contain at least one letter and one number.");
+    isValid = false;
+  }
+
+  if (age && !ageRegex.test(age)) {
+    alert("Age must be a valid number between 1 and 99.");
+    isValid = false;
+  }
+
+  if (gift && !giftRegex.test(gift)) {
+    alert("Preferred gift categories must be 2-50 alphabetic characters, spaces, or commas.");
+    isValid = false;
+  }
+
+  // Prevent form submission if any field is invalid
+  if (!isValid) {
+    event.preventDefault();
+  }
+});
     </script>
   </body>
 </html>
