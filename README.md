@@ -19,8 +19,10 @@ Trello : https://trello.com/b/ljBHJF5E/handmade
 
 Technologies used:
 HTML, CSS, JS, fire-base.
+--------
 Cummuntiation tools:
 discord, trello.
+---------
 Team:
 dia'a (SM)
 lawrence (PO)
