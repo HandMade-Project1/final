@@ -37,7 +37,12 @@
                 </form>
                 <div id="searchResults"></div>
                 <div class="header_icons">
-                    <div class="icon">
+                  <div class="icon">
+                    <a href="userProfile.html">
+                      <i class="fa-solid fa-user" style="color: #C4C1E4;"></i>
+                    </a>
+                  </div>
+                    <!-- <div class="icon">
                         <a href="#">
                             <i class="fa-regular fa-heart" style="color: #C4C1E4;"></i>
                         </a>
@@ -46,7 +51,7 @@
                         <a href="#">
                         <i class="fa-solid fa-cart-shopping" style="color: #C4C1E4;"></i>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -63,6 +68,8 @@
             </div>
         </div>
     </header>
+    <div id="welcome-message"></div>
+
         <div class="container1" >
         <h2>Delivery info</h2>
         <div class="delivery-options" >
@@ -120,7 +127,7 @@
             <div class="payment-options">
                 <label>
                     <input type="radio" name="payment">
-                    <span>Paypal</span>
+                    <span>Cash</span>
                 </label>
                 <label>
                     <input type="radio" name="payment" checked>
@@ -131,9 +138,9 @@
                 Some information or instruction
             </div>
             <div class="credit-card" id="credit-card">
-                <input type="text" placeholder="xxxx-xxxx-xxxx-xxxx" required>
-                <input type="text" placeholder="dd/yy" required>
-                <input type="text" placeholder="cvc" required>
+                <input type="text" placeholder="xxxx-xxxx-xxxx-xxxx" id="creditCard"required>
+                <input type="text" placeholder="dd/yy" id="expiryDate" required>
+                <input type="text" placeholder="cvc"id="cvc" required>
             </div>
             <button type="submit">Submit</button>
         </form>
@@ -254,6 +261,9 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
   import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+  import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+
 
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -274,6 +284,8 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const db = getFirestore(app);
+  const auth = getAuth(app);
+
 
   document.getElementById("delivery-form").addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -282,14 +294,21 @@
     const city = document.getElementById("city").value;
     const area = document.getElementById("area").value;
     const street = document.getElementById("street").value;
-    const House = document.getElementById("house").value;
+    const house = document.getElementById("house").value;
     const building = document.getElementById("building").value;
     const postalCode = document.getElementById("postal-code").value;
     const zip = document.getElementById("zip").value;
 
-    const creditCard = document.querySelector("#credit-card input:nth-child(1)").value;
-    const expiryDate = document.querySelector("#credit-card input:nth-child(2)").value;
-    const cvc = document.querySelector("#credit-card input:nth-child(3)").value;
+    const creditCard = document.getElementById("creditCard").value;
+    const expiryDate = document.getElementById("expiryDate").value;
+    const cvc = document.getElementById("cvc").value;
+
+
+    // Validation rules
+    const creditCardRegex = /^[0-9]{16}$/; 
+    const expiryDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/; 
+    const cvcRegex = /^[0-9]{3}$/; 
+
 
     // Validate required fields
     if (!city || !area || !street || !creditCard || !expiryDate || !cvc) {
@@ -313,7 +332,8 @@
         timestamp: new Date().toISOString()
       });
 
-      alert("Your delivery information has been submitted successfully!");
+      // alert("Your delivery information has been submitted successfully!");
+      swal("Good job!", "Your delivery information has been submitted successfully!");
       // window.location.href = "index.html"; // Redirect to the homepage
     } catch (error) {
       console.error("Error adding document: ", error);
