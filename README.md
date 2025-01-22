@@ -17,22 +17,13 @@ Figma : https://www.figma.com/design/NWZqU830pYpam9631x8wZH/Untitled?node-id=0-1
 
 Trello : https://trello.com/b/ljBHJF5E/handmade
 
-#Technologies used:
---------
+Technologies used:
 HTML, CSS, JS, fire-base.
---------
-#Cummuntiation tools:
---------
+Cummuntiation tools:
 discord, trello.
----------
-#Team:
--------
+Team:
 dia'a (SM)
-----------
 lawrence (PO)
--------
 rana
---------
 ahlam
-------
 bilal
