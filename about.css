@@ -218,3 +218,8 @@ img {
   background: #af4c90;
 }
 /***************************************************/
+@media (max-width:600px) {
+  .whoweare{
+    flex-direction: column;
+  }
+}
