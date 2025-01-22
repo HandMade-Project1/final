@@ -1,12 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-
 import {
   getFirestore,
   doc,
   getDoc,
-  collection,
 } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
@@ -37,16 +35,15 @@ let products = [
 ];
 
 document.getElementById("category").addEventListener("change", function () {
-  const selectedValue = this.value; 
+  const selectedValue = this.value;
   if (selectedValue) {
-    window.location.href = selectedValue; 
+    window.location.href = selectedValue;
   }
 });
 
 document.getElementById("searchForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const searchResultsDiv = document.getElementById("searchResults");
   const searchQuery = document
     .getElementById("search")
     .value.trim()
@@ -64,12 +61,18 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
   if (filteredProducts.length > 0) {
     window.location.href = `product.html`;
   } else {
-    alert("No products found");
+    // SweetAlert2 for no products found
+    Swal.fire({
+      icon: 'error',
+      title: 'No Products Found',
+      text: 'Sorry, no products match your search criteria.',
+      confirmButtonText: 'OK'
+    });
   }
 });
 
 ////////////////// to hide and display login and sign up buttons if user //////////////////////////////////////
-auth.onAuthStateChanged((user) => {
+onAuthStateChanged(auth, (user) => {
   console.log("Auth state changed:", user);
 
   const welcomeMessageElement = document.getElementById("welcome-message");
@@ -130,10 +133,25 @@ document.getElementById("logout-button").addEventListener("click", async () => {
   try {
     await auth.signOut();
     console.log("User signed out.");
-    // Redirect to the login page or update the UI accordingly
-    window.location.href = "login.html";
+
+    // SweetAlert2 for successful logout
+    Swal.fire({
+      icon: 'success',
+      title: 'Logged Out Successfully!',
+      text: 'You have been signed out.',
+      confirmButtonText: 'OK'
+    }).then(() => {
+      window.location.href = "login.html"; // Redirect after confirmation
+    });
   } catch (error) {
     console.error("Error signing out:", error);
+
+    // SweetAlert2 for logout error
+    Swal.fire({
+      icon: 'error',
+      title: 'Logout Failed',
+      text: error.message,
+      confirmButtonText: 'OK'
+    });
   }
 });
-
