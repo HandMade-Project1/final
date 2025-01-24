@@ -86,14 +86,23 @@
     <br>
     <h1 class="title">Product Details</h1><br>
     <div id="product-details-container" class="product-details"></div>
-
+    <div id="line"></div>
     <!-- Main Parent Container -->
     <div class="container">
         <!-- Product Details Section -->
         <div id="product-details-container" class="product-details"></div>
 
-        <!-- Form Section -->
-        <div class="form-container">
+
+        <br>
+        <br>
+        <br>
+        <div class="review-header">
+            <h3>Customers reviews</h3><button id="write-review-btn">Write a review</button>
+        </div>
+
+        <!-- Form Section - Initially Hidden -->
+        <div class="form-container" id="review-form-container" style="display: none;">
+            <button id="close-form-btn" class="close-btn">X</button> <!-- Close Button -->
             <h1>Please share your experience</h1><br>
 
             <!-- Review Form -->
@@ -120,6 +129,7 @@
                 <button type="submit" class="btn rr">Submit Review</button>
             </form>
         </div>
+    </div>
     </div>
 
     <!-- Reviews Section -->

@@ -88,20 +88,19 @@ body {
 /* Review Section */
 .reviews {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 
 }
 
 .review {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgb(139, 92, 159);
-  padding: 20px;
-  margin-bottom: 50px;
-  width: 300px;
-
+  background: #f9f9f9;
+  padding: 10px;
+  width: 70%;
+  border-top: 1px solid rgba(139, 92, 159, 0.5);
 }
+
 
 .review h3 {
   font-size: 20px;
@@ -115,8 +114,38 @@ body {
   color: #444;
 }
 
-.review small {
-  color: #606060;
+.review .header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.review .rate {
+  display: flex;
+}
+
+
+#line {
+  width: 90%;
+  height: 2px;
+  background-color: #4b0058;
+  margin: 50px;
+  /* Adds space above and below the line */
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.review-header {
+  display: flex;
+  /* Use flexbox for alignment */
+  align-items: center;
+  /* Vertically align items */
+  margin-bottom: 20px;
+  /* Optional: Add spacing below the section */
+  width: 90%;
+  gap: 600px;
 }
 
 /* Review Form */
@@ -132,6 +161,33 @@ body {
   width: 500px;
 
 }
+
+
+#write-review-btn {
+  padding: 7px;
+  border-radius: 10px;
+  background-color: rgb(229, 179, 252);
+  color: white;
+  border-color: rgb(232, 201, 245);
+}
+
+/* Close button style */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+
 
 .btn.rr {
   width: 440px;
@@ -221,85 +277,4 @@ body {
 .star.five:hover~.star,
 .star.five {
   color: #f1f900;
-}
-
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-
-  .container {
-    width: 100%;
-    margin: 10px auto;
-  }
-
-  .product-details-card {
-    flex-direction: column;
-    max-width: 90%;
-    top: 0;
-    /* لإلغاء تأثير التمركز الرأسي */
-  }
-
-  .product-details-image img {
-    max-width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .product-details-content {
-    padding: 15px;
-  }
-
-  .product-details-content h2 {
-    font-size: 24px;
-  }
-
-  .product-details-content p {
-    font-size: 14px;
-  }
-
-  .product-details-price {
-    font-size: 18px;
-  }
-
-  .checkout-button {
-    font-size: 16px;
-    width: 100%;
-  }
-
-  .reviews {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .review {
-    width: 100%;
-  }
-
-  .form-container {
-    width: 100%;
-    padding: 20px;
-  }
-
-  .btn.rr {
-    width: 100%;
-  }
-
-  .review-form input,
-  .review-form textarea,
-  .review-form select {
-    font-size: 14px;
-  }
-
-  .review-form button {
-    width: 100%;
-  }
-
-  #star-rating {
-    justify-content: center;
-  }
-
-  .star {
-    font-size: 24px;
-  }
 }
